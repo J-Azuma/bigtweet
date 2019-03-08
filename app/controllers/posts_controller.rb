@@ -120,13 +120,13 @@ class PostsController < ApplicationController
 
         case Rails.env
         when 'production'
-            bucket = storage.directries.get('#-production')
+            bucket = storage.directories.get('#-production')
             png_path = 'images/' + id.to_s + '.png'
             image_uri = image.path 
             file = bucket.files.create(key: png_path, public: true, body: open(image_uri))
             @post.picture = 'https://s3-ap-northeast-1.amazonaws.com/#-production' + "/" + png_path
-        when 'davelopment'
-            bucket = storage.directries.get('otakutweet-development')
+        when 'development'
+            bucket = storage.directories.get('otakutweet-development')
             png_path = 'images/' + id.to_s + '.png'
             image_uri = image.path 
             file = bucket.files.create(key: png_path, public: true, body: open(image_uri))
